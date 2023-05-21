@@ -150,18 +150,20 @@ function onSearchFormSubmitted(event) {
   //prevent submit default event
   event.preventDefault()
   //get search keyword
-  const keyword = searchInput.value.trim().toLowerCase()
+  let keyword = searchInput.value.trim().toLowerCase()
   //filter movies 
-
   filteredMovies = movies.filter((movie) =>
     movie.title.toLowerCase().includes(keyword))
   //if no match
   if (filteredMovies.length === 0) {
-    return alert(`no movie match with: ${keyword}`)
+    alert(`no movie match with: ${keyword}`)
+    searchInput.value = ''
+  } else {
+    //render page
+    renderPaginator(filteredMovies.length)
+    renderMovieList(filteredMovies)
+    searchInput.value = ''
   }
-  //render page
-  renderPaginator(filteredMovies.length)
-  renderMovieList(filteredMovies)
 }
 
 // listen to paginator
