@@ -132,11 +132,15 @@ function onSearchFormSubmitted(event) {
     movie.title.toLowerCase().includes(keyword))
   //if no match
   if (filteredMovies.length === 0) {
-    return alert(`no movie match with: ${keyword}`)
+    alert(`no movie match with: ${keyword}`)
+    searchInput.value = ''
+  } else {
+    //render page
+    renderPaginator(filteredMovies.length)
+    renderMovieList(filteredMovies)
+    searchInput.value = ''
   }
-  //render page
-  renderPaginator(filteredMovies.length)
-  renderMovieList(filteredMovies)
+
 }
 
 
