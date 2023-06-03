@@ -2,7 +2,7 @@
 
 ### Introduction
 A list with 80 movies where you can find movie title, details, poster and create your own favorite list.   
-Play around with this list [  HERE! ](https://peiyi-c.github.io/alpha_movieList/index.html)
+Play around with this list [  HERE! ](https://peiyi-c.github.io/movieList_Alpha/)
 
 🎥 Home page
 * search movie via keyword in search field, matching movie(s) in movie list will show if any exists.  
