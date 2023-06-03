@@ -1,4 +1,4 @@
-# alpha_movieList
+# movieList
 
 ### Introduction
 A list with 80 movies where you can find movie title, details, poster and create your own favorite list.   
