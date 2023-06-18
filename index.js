@@ -38,7 +38,7 @@ function renderMovieList(data) {
             data-id="${item.id}">More
           </button>
           <button 
-            class="btn btn-danger btn-add-favorite" data-id="${item.id}" disabled>
+            class="btn btn-danger btn-add-favorite" data-id="${item.id}">
             \&#9829;\	
           </button>
         </div>
@@ -63,7 +63,7 @@ function renderMovieList(data) {
             data-id="${item.id}">More
           </button>
           <button 
-            class="btn btn-danger btn-add-favorite" data-id="${item.id}">
+            class="btn btn-outline-danger btn-add-favorite" data-id="${item.id}">
             \&#9829;\	
           </button>
         </div>
@@ -131,6 +131,19 @@ function addToFavorite(id) {
   localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies))
 }
 
+// function: remove from favorite
+function removeFromFavorite(id) {
+  if (!favoriteMovies || !favoriteMovies.length) return
+  // find the index of movie to remove
+  const movieIndex = favoriteMovies.findIndex((movie) => movie.id === id)
+  if (movieIndex === -1) {
+    return
+  } else {
+    //remove from favorite movie
+    favoriteMovies.splice(movieIndex, 1)
+    localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies))
+  }
+}
 
 // listen to data panel
 dataPanel.addEventListener('click', onPanelClicked)
@@ -138,9 +151,15 @@ function onPanelClicked(event) {
   if (event.target.matches('.btn-show-movie')) {
     showMovieModal(event.target.dataset.id)
   } else if (event.target.matches('.btn-add-favorite')) {
-    addToFavorite(Number(event.target.dataset.id))
-    //event.target.setAttribute('disabled', '');
-    event.target.toggleAttribute("disabled")
+    if (!event.target.classList.contains('btn-danger')) {
+      addToFavorite(Number(event.target.dataset.id))
+      event.target.classList.remove('btn-outline-danger')
+      event.target.classList.add('btn-danger')
+    } else {
+      removeFromFavorite(Number(event.target.dataset.id))
+      event.target.classList.add('btn-outline-danger')
+      event.target.classList.remove('btn-danger')
+    }
   }
 }
 
